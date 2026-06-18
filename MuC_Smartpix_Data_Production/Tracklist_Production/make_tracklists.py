@@ -118,7 +118,9 @@ tracks=[]
 track_count=0
 break_loop=False
 count = 0
-fileCountStart = 440
+# BIB processing can skip into the large CVMFS file lists. Signal mode has a
+# single detector-sim file, so starting at 440 silently drops all signal hits.
+fileCountStart = 0 if ops.signal else 440
 fileCountLimit = 1000
 for file_path in file_list:
     if break_loop:
